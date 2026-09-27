@@ -7,15 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Beyza_Bolattekin.SpringBootCourse_App1.common.Coach;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-
 @RestController
 public class DemoController {
     private Coach myCoach;
 
     @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+    public DemoController(@Qualifier("aquatic") Coach theCoach) {
 
         System.out.println("In constructor " + getClass().getSimpleName());
 
