@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.Beyza_Bolattekin.SpringBootCourse_App1.dao.StudentDAO;
+import com.Beyza_Bolattekin.SpringBootCourse_App1.entity.Student;
+
 @SpringBootApplication
 public class SpringBootCourseApp1Application {
 
@@ -13,10 +16,33 @@ public class SpringBootCourseApp1Application {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(String[] args) {
+	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			System.out.println("CommandLineRunner test 1");
+			createMultipleStudents(studentDAO);
 		};
+	}
+
+	private void createMultipleStudents(StudentDAO studentDAO) {
+		System.out.println("crating new 3 student object");
+		Student tempStudent1 = new Student("John", "Doe", "John@doe.com");
+		Student tempStudent2 = new Student("Mary", "Doe", "Mary@doe.com");
+		Student tempStudent3 = new Student("Bonita", "Doe", "Bonita@doe.com");
+
+		System.out.println("save the student objects");
+		studentDAO.save(tempStudent1);
+		studentDAO.save(tempStudent2);
+		studentDAO.save(tempStudent3);
+
+	}
+
+	private void createStudent(StudentDAO studentDAO) {
+		System.out.println("crating new student object");
+		Student tempStudent = new Student("Paul", "Doe", "paul@doe.com");
+
+		System.out.println("save the student object");
+		studentDAO.save(tempStudent);
+
+		System.out.println("student saved, generated id=" + tempStudent.getId());
 	}
 
 }
