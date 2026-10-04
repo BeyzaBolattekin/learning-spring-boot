@@ -20,8 +20,19 @@ public class SpringBootCourseApp1Application {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			updateStudent(studentDAO);
+			// deleteStudent(studentDAO);
+			deleteAllStudent(studentDAO);
 		};
+	}
+
+	private void deleteAllStudent(StudentDAO studentDAO) {
+		int numRowsDeleted = studentDAO.deleteAll();
+		System.out.println(numRowsDeleted);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		int theId = 4;
+		studentDAO.delete(theId);
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
