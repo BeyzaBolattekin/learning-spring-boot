@@ -20,10 +20,23 @@ public class SpringBootCourseApp1Application {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			// queryAllStudents(studentDAO);
-
-			queryForStudentsByLastname(studentDAO);
+			updateStudent(studentDAO);
 		};
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+
+		int studentId = 2;
+		Student currentStudent = studentDAO.findById(studentId);
+
+		currentStudent.setFirstName("Scooby");
+		currentStudent.setLastName("Doo");
+		currentStudent.setEmail("scooby@doo.com");
+
+		studentDAO.update(currentStudent);
+
+		System.out.println(currentStudent);
+
 	}
 
 	private void queryForStudentsByLastname(StudentDAO studentDAO) {
