@@ -1,5 +1,7 @@
 package com.Beyza_Bolattekin.SpringBootCourse_App1;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,8 +20,37 @@ public class SpringBootCourseApp1Application {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			createMultipleStudents(studentDAO);
+			// queryAllStudents(studentDAO);
+
+			queryForStudentsByLastname(studentDAO);
 		};
+	}
+
+	private void queryForStudentsByLastname(StudentDAO studentDAO) {
+
+		List<Student> allStudentsByLastname = studentDAO.findByLastname("Doe");
+
+		for (Student tempStudent : allStudentsByLastname) {
+			System.out.println(tempStudent);
+		}
+	}
+
+	private void queryAllStudents(StudentDAO studentDAO) {
+
+		List<Student> allStudents = studentDAO.findAll();
+
+		for (Student tempStudent : allStudents) {
+			System.out.println(tempStudent);
+		}
+
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		int theId = 3;
+		System.out.println("fetching student with the id " + theId);
+		Student myStudent = studentDAO.findById(theId);
+		System.out.println("found the student: " + myStudent);
+
 	}
 
 	private void createMultipleStudents(StudentDAO studentDAO) {
