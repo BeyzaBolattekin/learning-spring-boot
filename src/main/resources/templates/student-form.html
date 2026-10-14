@@ -6,6 +6,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>Student Registration Form</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <h3>Student Registration Form</h3>
@@ -23,10 +28,54 @@
 
       <br /><br />
 
-      Last name:
+      Last name (*):
       <input
         type="text"
         th:field="*{lastName}"
+      />
+      <span
+        th:if="${#fields.hasErrors('lastName')}"
+        th:errors="*{lastName}"
+        class="error"
+      />
+
+      <br /><br />
+
+      Grade:
+      <input
+        type="number"
+        th:field="*{grade}"
+      />
+      <span
+        th:if="${#fields.hasErrors('grade')}"
+        th:errors="*{grade}"
+        class="error"
+      />
+
+      <br /><br />
+
+      Postal Code:
+      <input
+        type="number"
+        th:field="*{postalCode}"
+      />
+      <span
+        th:if="${#fields.hasErrors('postalCode')}"
+        th:errors="*{postalCode}"
+        class="error"
+      />
+
+      <br /><br />
+
+      Course Code:
+      <input
+        type="text"
+        th:field="*{courseCode}"
+      />
+      <span
+        th:if="${#fields.hasErrors('courseCode')}"
+        th:errors="*{courseCode}"
+        class="error"
       />
 
       <br /><br />
